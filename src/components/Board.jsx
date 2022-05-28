@@ -1,5 +1,6 @@
 import { Link, useParams, useRouteData } from "solid-app-router";
 import { createEffect, createResource, For } from "solid-js";
+import { Title } from "solid-meta";
 
 const getThreads = (boardId) =>
 	new Promise((res) => {
@@ -27,8 +28,11 @@ function Board(props) {
 		console.log({ threads: threads(), id: id() });
 	}, id);
 
+	let title = () => "/" + id() + " - Bordie";
+
 	return (
 		<div className="board-container">
+			<Title>{title()}</Title>
 			<h2 className="board-title">/{id()}</h2>
 			<small className="board-page">Page {page || 1}</small>
 			<For each={threads()} fallback={<div>Loading threads...</div>}>

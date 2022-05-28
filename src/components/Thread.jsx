@@ -1,5 +1,6 @@
 import { useParams } from "solid-app-router";
 import { createResource, For } from "solid-js";
+import { Title } from "solid-meta";
 import Post from "./Post";
 
 const getPosts = (threadId) =>
@@ -24,6 +25,9 @@ function Thread(props) {
 
 	return (
 		<div className="">
+			<Title>
+				{id} - /{board} - Boardie
+			</Title>
 			<For each={posts()}>{(post) => <Post {...post} board={board} />}</For>
 		</div>
 	);
