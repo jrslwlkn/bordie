@@ -7,12 +7,12 @@ const getThreads = (boardId) =>
 			{
 				id: 3423,
 				title: "Lorem Ipsum",
-				opText: "some text here",
+				text: "some text here",
 			},
 			{
 				id: 3433423,
 				title: "Lorem Ipsum - 2",
-				opText: "some text here again",
+				text: "some text here again",
 			},
 		]);
 	});
@@ -26,14 +26,16 @@ function Board({ id, page }) {
 	});
 
 	return (
-		<div>
-			<h3>Here is the list of threads for page {page}:</h3>
+		<div className="board-container">
+			<h2 className="board-title">/{id}</h2>
+			<small className="board-page">Page {page}</small>
 			<For each={threads()} fallback={<div>Loading threads...</div>}>
 				{(thread) => (
-					<div>
-						this is a thread:{" "}
-						<Link href={"/" + id + "/thread/" + thread.id}>{thread.title}</Link>
-						<pre>{thread.opText}</pre>
+					<div className="thread-container">
+						<Link class="thread-title" href={"/" + id + "/thread/" + thread.id}>
+							{thread.title}
+						</Link>
+						<article className="thread-body">{thread.text}</article>
 					</div>
 				)}
 			</For>

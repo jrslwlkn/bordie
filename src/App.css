@@ -1,0 +1,79 @@
+.main-container {
+  max-width: 70%;
+  min-width: 500px;
+  margin: auto;
+  padding: 0;
+}
+
+.main-menu-container {
+  border: 1px dotted grey;
+  display: flex;
+  justify-content: end;
+  margin: 10px 0;
+}
+
+.nav-link {
+  font-family: monospace;
+  color: darkblue;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 20px 10px 0;
+}
+
+.board-link {
+  font-family: monospace;
+  color: blue;
+  text-decoration: underline;
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 10px auto;
+}
+
+.home-title {
+  text-align: center; 
+  margin: 2rem 0;
+}
+
+.board-title {
+  text-align: center;
+  margin: 10px;
+}
+
+.board-page {
+  display: block;
+  text-align: center;
+  color: grey;
+}
+
+.thread-container, .post-container {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px dashed grey;
+}
+
+.thread-title {
+  display: block;
+}
+
+.thread-body {
+  margin-top: 20px;
+}
+
+.op-post {
+  border: 1px solid black;
+}
+
+.post-title {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.post-text {
+  text-align: justify;
+}
+
+.loading-text {
+  font-family: monospace;
+}

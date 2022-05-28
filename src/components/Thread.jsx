@@ -21,10 +21,9 @@ function Thread({ id, board }) {
 	const [posts] = createResource(id, getPosts);
 
 	return (
-		<>
-			<div>this is a thread: {id}</div>
-			<For each={posts()}>{(post) => <Post {...post} />}</For>
-		</>
+		<div className="">
+			<For each={posts()}>{(post) => <Post {...post} board={board} />}</For>
+		</div>
 	);
 }
 

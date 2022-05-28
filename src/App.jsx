@@ -1,15 +1,18 @@
 import { lazy } from "solid-js";
 import { Routes, Route, useParams } from "solid-app-router";
-import styles from "./App.module.css";
+import "./App.css";
 
 const Home = lazy(() => import("./components/Home"));
 const Board = lazy(() => import("./components/Board"));
 const Thread = lazy(() => import("./components/Thread"));
+const Menu = lazy(() => import("./components/Menu"));
+
+const boards = [{ id: "b" }, { id: "a" }];
 
 function App() {
 	return (
-		<div class={styles.App}>
-			<h1>Welcome to bordie</h1>
+		<div className="main-container">
+			<Menu items={boards} />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/:boardId" element={<Board page={"1"} id={useParams().boardId} />} />
