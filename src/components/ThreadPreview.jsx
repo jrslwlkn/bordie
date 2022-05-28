@@ -12,7 +12,7 @@ function ThreadPreview({ id, title, text, tail }) {
 				<article className="thread-body">{text}</article>
 			</div>
 
-			<For each={tail}>{(post) => <Post {...post} isOp={false} />}</For>
+			<For each={tail}>{(post) => <Post {...post} isOp={false} isPreview />}</For>
 
 			<hr />
 		</>

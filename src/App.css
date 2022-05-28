@@ -96,6 +96,8 @@ button:disabled {
 .post-container {
   min-width: 50%;
   border: 1px dotted grey;
+}
+.post-preview {
   max-width: 75%;
 }
 
