@@ -2,6 +2,7 @@ import { Link, useParams, useRouteData } from "solid-app-router";
 import { createEffect, createResource, createSignal, For, Show } from "solid-js";
 import { Title } from "solid-meta";
 import PostForm from "./PostForm";
+import ThreadPreview from "./ThreadPreview";
 
 const getThreads = (boardId) =>
 	new Promise((res) => {
@@ -10,6 +11,20 @@ const getThreads = (boardId) =>
 				id: 3423,
 				title: "Lorem Ipsum",
 				text: "some text here",
+				tail: [
+					{
+						id: 23,
+						text: "hello 1",
+					},
+					{
+						id: 233,
+						text: "hello 2",
+					},
+					{
+						id: 293,
+						text: "hello 3",
+					},
+				],
 			},
 			{
 				id: 3433423,
@@ -44,24 +59,20 @@ function Board(props) {
 			<Title>{title()}</Title>
 			<h2 className="board-title">/{id()}</h2>
 			<small className="board-page">Page {page || 1}</small>
+
 			<button type="button" className="btn-add-thread" onClick={() => setOpen(!getOpen())}>
 				[{getOpen() ? "-" : "+"}] Add a thread
 			</button>
+
 			<Show when={getOpen()}>
 				<PostForm
 					getForm={getForm}
 					setForm={(diff = {}) => setForm({ ...getForm(), ...diff })}
 				/>
 			</Show>
+
 			<For each={threads()} fallback={<div>Loading threads...</div>}>
-				{(thread) => (
-					<div className="thread-container">
-						<Link class="thread-title" href={"/" + id() + "/thread/" + thread.id}>
-							{thread.title}
-						</Link>
-						<article className="thread-body">{thread.text}</article>
-					</div>
-				)}
+				{(thread) => <ThreadPreview {...thread} />}
 			</For>
 		</div>
 	);

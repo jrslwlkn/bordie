@@ -1,7 +1,6 @@
-function Post({ id, board, title, text }) {
+function Post({ id, board, title, text, isOp }) {
 	return (
-		<div id={id} className="post-container op-post">
-			<h4 className="post-title">{title}</h4>
+		<div id={id} className={"post-container " + (isOp ? "op-post" : "")}>
 			<article className="post-text">{text}</article>
 		</div>
 	);

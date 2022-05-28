@@ -93,6 +93,12 @@ button:disabled {
   border: 1px dashed grey;
 }
 
+.post-container {
+  min-width: 50%;
+  border: 1px dotted grey;
+  max-width: 75%;
+}
+
 .thread-title {
   display: block;
 }
