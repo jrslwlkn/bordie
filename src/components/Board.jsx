@@ -1,4 +1,4 @@
-import { Link, useParams } from "solid-app-router";
+import { Link } from "solid-app-router";
 import { createEffect, createResource, For } from "solid-js";
 
 const getThreads = (boardId) =>
@@ -17,21 +17,22 @@ const getThreads = (boardId) =>
 		]);
 	});
 
-function Board(props) {
-	const params = useParams();
-	const [threads] = createResource(params.boardId, getThreads);
+function Board({ id, page }) {
+	// TODO: add pagination
+	const [threads] = createResource(id, getThreads);
 
 	createEffect(() => {
-		console.log(params.boardId);
+		console.log({ id, page });
 	});
 
 	return (
 		<div>
-			<h3>Here is the list of threads for page {params.page}:</h3>
+			<h3>Here is the list of threads for page {page}:</h3>
 			<For each={threads()} fallback={<div>Loading threads...</div>}>
 				{(thread) => (
 					<div>
-						this is a thread: <Link href={"thread/" + thread.id}>{thread.title}</Link>
+						this is a thread:{" "}
+						<Link href={"/" + id + "/thread/" + thread.id}>{thread.title}</Link>
 						<pre>{thread.opText}</pre>
 					</div>
 				)}
