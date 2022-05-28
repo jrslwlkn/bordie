@@ -1,5 +1,5 @@
 import { Link } from "solid-app-router";
-import { createEffect, createResource, createSignal, For } from "solid-js";
+import { createResource, For } from "solid-js";
 
 const getBoards = () =>
 	new Promise((res, rej) => {
@@ -24,9 +24,7 @@ function Home(props) {
 
 	return (
 		<>
-			<h2 className="home-title">
-				Welcome back to <span className="nav-link">bordie</span>, again.
-			</h2>
+			<h2 className="home-title">Welcome back to Bordie, open source imageboard.</h2>
 			<For each={boards()} fallback={<div className="loading-text">Loading...</div>}>
 				{(board) => (
 					<Link class="board-link" href={"/" + board.id}>

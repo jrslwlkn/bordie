@@ -14,16 +14,14 @@ function App() {
 		<div className="main-container">
 			<Menu items={boards} />
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/:boardId" element={<Board page={"1"} id={useParams().boardId} />} />
+				<Route path="/" element={<Home />} />u
 				<Route
-					path="/:boardId/:page"
-					element={<Board page={useParams().page} id={useParams().boardId} />}
+					path="/:boardId"
+					element={<Board />}
+					data={() => () => useParams().boardId}
 				/>
-				<Route
-					path="/:boardId/thread/:threadId"
-					element={<Thread board={useParams().boardId} id={useParams().threadId} />}
-				/>
+				<Route path="/:boardId/:page" element={<Board />} />
+				<Route path="/:boardId/thread/:threadId" element={<Thread />} />
 			</Routes>
 		</div>
 	);

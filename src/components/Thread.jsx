@@ -1,3 +1,4 @@
+import { useParams } from "solid-app-router";
 import { createResource, For } from "solid-js";
 import Post from "./Post";
 
@@ -17,7 +18,8 @@ const getPosts = (threadId) =>
 		]);
 	});
 
-function Thread({ id, board }) {
+function Thread(props) {
+	const { threadId: id, boardId: board } = useParams();
 	const [posts] = createResource(id, getPosts);
 
 	return (
