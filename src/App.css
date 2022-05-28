@@ -43,6 +43,10 @@ button:disabled {
   margin: 10px auto;
 }
 
+.home-container {
+  border: 1px dashed grey;
+}
+
 .home-title {
   text-align: center; 
   margin: 2rem 0;
@@ -97,6 +101,7 @@ button:disabled {
   min-width: 50%;
   border: 1px dotted grey;
 }
+
 .post-preview {
   max-width: 75%;
 }
@@ -109,13 +114,19 @@ button:disabled {
   margin-top: 20px;
 }
 
-.op-post {
+.board-container .op-post, .post-container.op-post {
+  border: 1px dashed black;
+}
+
+.new-post.op-post {
   border: 1px solid black;
 }
 
 .post-title {
+  display: block;
   font-weight: bold;
   margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .post-text {

@@ -1,4 +1,4 @@
-function Post({ id, board, title, text, isOp, isPreview }) {
+function Post({ id, title, text, isOp, isPreview }) {
 	return (
 		<div
 			id={id}
@@ -6,6 +6,9 @@ function Post({ id, board, title, text, isOp, isPreview }) {
 				"post-container" + (isOp ? " op-post" : "") + (isPreview ? " post-preview" : "")
 			}
 		>
+			<Show when={!!title}>
+				<div className="post-title">{title}</div>
+			</Show>
 			<article className="post-text">{text}</article>
 		</div>
 	);

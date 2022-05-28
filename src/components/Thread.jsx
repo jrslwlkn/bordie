@@ -23,8 +23,6 @@ function Thread(props) {
 	const { threadId: id, boardId: board } = useParams();
 	const [posts] = createResource(id, getPosts);
 
-
-	let isOp = false;
 	return (
 		<div className="">
 			<Title>
@@ -32,14 +30,7 @@ function Thread(props) {
 			</Title>
 			<For each={posts()}>
 				{(post) => {
-					return (
-						<Post
-							{...post}
-							board={board}
-							isPreview={false}
-							isOp={post.id === posts()[0].id}
-						/>
-					);
+					return <Post {...post} isPreview={false} isOp={post.id === posts()[0].id} />;
 				}}
 			</For>
 		</div>

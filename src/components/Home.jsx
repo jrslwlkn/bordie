@@ -23,7 +23,7 @@ function Home(props) {
 	const [boards] = createResource(getBoards);
 
 	return (
-		<>
+		<div className="home-container">
 			<h2 className="home-title">Welcome back to Bordie, open source imageboard.</h2>
 			<For each={boards()} fallback={<div className="loading-text">Loading...</div>}>
 				{(board) => (
@@ -32,7 +32,7 @@ function Home(props) {
 					</Link>
 				)}
 			</For>
-		</>
+		</div>
 	);
 }
 export default Home;

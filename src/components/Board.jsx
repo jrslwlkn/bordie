@@ -1,5 +1,5 @@
-import { Link, useParams, useRouteData } from "solid-app-router";
-import { createEffect, createResource, createSignal, For, Show } from "solid-js";
+import { useParams } from "solid-app-router";
+import { createResource, createSignal, For, Show } from "solid-js";
 import { Title } from "solid-meta";
 import PostForm from "./PostForm";
 import ThreadPreview from "./ThreadPreview";
@@ -37,18 +37,10 @@ const getThreads = (boardId) =>
 function Board(props) {
 	// TODO: add pagination
 	const { page } = useParams();
-	const id = useRouteData();
+	const id = () => useParams().boardId;
 	const [threads] = createResource(id, getThreads);
 	const [getOpen, setOpen] = createSignal(false);
 	const [getForm, setForm] = createSignal({ title: "", text: "" });
-
-	createEffect(() => {
-		console.log({ threads: threads(), id: id() });
-	}, id);
-
-	createEffect(() => {
-		console.log(getForm());
-	});
 
 	let title = () => "/" + id() + " - Bordie";
 

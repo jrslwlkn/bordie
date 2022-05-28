@@ -5,14 +5,18 @@ import Post from "./Post";
 function ThreadPreview({ id, title, text, tail }) {
 	return (
 		<>
-			<div className="thread-container">
-				<Link class="thread-title" href={"/" + id + "/thread/" + id}>
-					{title}
-				</Link>
-				<article className="thread-body">{text}</article>
-			</div>
+			<Post
+				id={id}
+				title={
+					<Link class="post-title" href={"thread/" + id}>
+						{title}
+					</Link>
+				}
+				text={text}
+				isOp
+			/>
 
-			<For each={tail}>{(post) => <Post {...post} isOp={false} isPreview />}</For>
+			<For each={tail}>{(post) => <Post {...post} isPreview />}</For>
 
 			<hr />
 		</>
