@@ -1,4 +1,4 @@
-function PostForm({ getForm, setForm, isValid, hasTitle, className }) {
+function PostForm({ getForm, setForm, isValid, hasTitle, className, close }) {
 	const { title, text } = getForm();
 
 	const handleSubmit = async (e) => {
@@ -25,9 +25,20 @@ function PostForm({ getForm, setForm, isValid, hasTitle, className }) {
 				onChange={(e) => setForm({ text: e.target.value })}
 				rows={3}
 			/>
-			<button type="submit" className="btn-submit" disabled={!isValid(getForm())}>
-				Submit
-			</button>
+			<div style={{ display: "flex" }}>
+				<input type="file" style={{ display: "inline" }} />
+				<button
+					type="submit"
+					className="btn-submit"
+					style={{ display: "inline" }}
+					disabled={!isValid(getForm())}
+				>
+					Submit
+				</button>
+				<button type="button" className="btn-small" onClick={close}>
+					<strong>x</strong>
+				</button>
+			</div>
 		</form>
 	);
 }

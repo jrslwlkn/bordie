@@ -20,6 +20,7 @@ function useReply(initialForm) {
 					isValid={isValid}
 					hasTitle={initialForm?.title !== undefined}
 					className={className}
+					close={() => setOpen(false)}
 				/>
 			</Show>
 		</>
