@@ -1,7 +1,7 @@
 import { useParams } from "solid-app-router";
-import { createResource, createSignal, For, Show } from "solid-js";
+import { createResource, For } from "solid-js";
 import { Title } from "solid-meta";
-import PostForm from "./PostForm";
+import useReply from "../hooks/use-reply";
 import ThreadPreview from "./ThreadPreview";
 
 const getThreads = (boardId) =>
@@ -39,11 +39,8 @@ function Board(props) {
 	const { page } = useParams();
 	const id = () => useParams().boardId;
 	const [threads] = createResource(id, getThreads);
-	const [getOpen, setOpen] = createSignal(false);
-	const [getForm, setForm] = createSignal({ title: "", text: "" });
-
-	let title = () => "/" + id() + " - Bordie";
-
+	const [Button, Form, isOpen] = useReply({ title: "", text: "" });
+	const title = () => "/" + id() + " - Bordie";
 	// FIXME: clear/ask user to submit form on board change
 
 	return (
@@ -52,16 +49,8 @@ function Board(props) {
 			<h2 className="board-title">/{id()}</h2>
 			<small className="board-page">Page {page || 1}</small>
 
-			<button type="button" className="btn-add-thread" onClick={() => setOpen(!getOpen())}>
-				[{getOpen() ? "-" : "+"}] Add a thread
-			</button>
-
-			<Show when={getOpen()}>
-				<PostForm
-					getForm={getForm}
-					setForm={(diff = {}) => setForm({ ...getForm(), ...diff })}
-				/>
-			</Show>
+			<Button title="Add a thread" className="btn-primary" />
+			<Form isValid={({ title, text }) => title.length && text.length} />
 
 			<For each={threads()} fallback={<div>Loading threads...</div>}>
 				{(thread) => <ThreadPreview {...thread} />}

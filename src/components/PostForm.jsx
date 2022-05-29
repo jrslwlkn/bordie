@@ -1,25 +1,23 @@
-function PostForm({ getForm, setForm }) {
+function PostForm({ getForm, setForm, isValid, hasTitle, className }) {
 	const { title, text } = getForm();
 
 	const handleSubmit = async (e) => {
+		// TODO
 		e.preventDefault();
 		console.log({ e });
 	};
 
-	const isSubmittable = () => {
-		const { title, text } = getForm();
-		return title.length && text.length;
-	};
-
 	return (
-		<form className="new-post op-post" onSubmit={handleSubmit}>
-			<input
-				className="new-post-title"
-				type="text"
-				placeholder="Post title"
-				value={title}
-				onChange={(e) => setForm({ title: e.target.value })}
-			/>
+		<form className={"new-post op-post " + (className || "")} onSubmit={handleSubmit}>
+			<Show when={hasTitle}>
+				<input
+					className="new-post-title"
+					type="text"
+					placeholder="Post title"
+					value={title}
+					onChange={(e) => setForm({ title: e.target.value })}
+				/>
+			</Show>
 			<textarea
 				className="new-post-text"
 				placeholder="Post text..."
@@ -27,7 +25,7 @@ function PostForm({ getForm, setForm }) {
 				onChange={(e) => setForm({ text: e.target.value })}
 				rows={3}
 			/>
-			<button type="submit" className="btn-submit" disabled={!isSubmittable()}>
+			<button type="submit" className="btn-submit" disabled={!isValid(getForm())}>
 				Submit
 			</button>
 		</form>

@@ -1,0 +1,31 @@
+import { createSignal } from "solid-js";
+import PostForm from "../components/PostForm";
+
+function useReply(initialForm) {
+	const [getOpen, setOpen] = createSignal(false);
+	const [getForm, setForm] = createSignal(initialForm);
+
+	const Button = ({ title, className }) => (
+		<button type="button" className={className} onClick={() => setOpen(!getOpen())}>
+			{title}
+		</button>
+	);
+
+	const Form = ({ isValid, className }) => (
+		<>
+			<Show when={getOpen()}>
+				<PostForm
+					getForm={getForm}
+					setForm={(diff = {}) => setForm({ ...getForm(), ...diff })}
+					isValid={isValid}
+					hasTitle={initialForm?.title !== undefined}
+					className={className}
+				/>
+			</Show>
+		</>
+	);
+
+	return [Button, Form, getOpen];
+}
+
+export default useReply;

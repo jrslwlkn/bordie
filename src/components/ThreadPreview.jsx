@@ -13,6 +13,7 @@ function ThreadPreview({ id, title, text, tail }) {
 					</Link>
 				}
 				text={text}
+				isPreview={false}
 				isOp
 			/>
 
