@@ -7,7 +7,7 @@ function useReply(initialForm) {
 
 	const Button = ({ title, className }) => (
 		<button type="button" className={className} onClick={() => setOpen(!getOpen())}>
-			{title}
+			{getOpen() ? title + " ^" : title}
 		</button>
 	);
 

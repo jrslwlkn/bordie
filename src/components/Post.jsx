@@ -1,7 +1,9 @@
+import { useNavigate } from "solid-app-router";
 import useReply from "../hooks/use-reply";
 
 function Post({ id, title, text, isOp, isPreview }) {
 	const [Button, Form, isOpen] = useReply({ text: "" });
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -12,6 +14,16 @@ function Post({ id, title, text, isOp, isPreview }) {
 				}
 			>
 				<div className="post-bar">
+					<Show when={isOp}>
+						<button
+							type="button"
+							className="btn-small btn-open-thread"
+							onClick={() => navigate("thread/" + id)}
+						>
+							Open
+						</button>
+					</Show>
+
 					<Button title="Reply" className="btn-small" />
 				</div>
 

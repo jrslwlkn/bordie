@@ -26,7 +26,7 @@ function Thread(props) {
 	const [Button, Form, isOpen] = useReply({ title: "", text: "" });
 
 	return (
-		<div className="">
+		<div className="thread-container">
 			<Title>
 				{id} - /{board} - Boardie
 			</Title>
