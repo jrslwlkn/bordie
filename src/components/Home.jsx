@@ -1,26 +1,9 @@
 import { Link } from "solid-app-router";
 import { createResource, For } from "solid-js";
-
-const getBoards = () =>
-	new Promise((res, rej) => {
-		res([
-			{
-				id: "b",
-				title: "Random",
-			},
-			{
-				id: "a",
-				title: "Anime",
-			},
-			{
-				id: "pol",
-				title: "Politics",
-			},
-		]);
-	});
+import { getBoard } from "../api";
 
 function Home(props) {
-	const [boards] = createResource(getBoards);
+	const [boards] = createResource(getBoard);
 
 	return (
 		<div className="home-container">
