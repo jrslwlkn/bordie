@@ -1,7 +1,7 @@
 import { useNavigate } from "solid-app-router";
 import useReply from "../hooks/use-reply";
 
-function Post({ id, title, text, isOp, isPreview }) {
+function Post({ id, title, text, isOp, datetimecreated, isPreview }) {
 	const [Button, Form, isOpen] = useReply({ text: "" });
 	const navigate = useNavigate();
 
@@ -26,6 +26,11 @@ function Post({ id, title, text, isOp, isPreview }) {
 
 					<Button title="Reply" className="btn-small" />
 				</div>
+
+				<small className="post-meta">
+					#{id} @ {new Date(datetimecreated).toLocaleDateString()}{" "}
+					{new Date(datetimecreated).toLocaleTimeString()}
+				</small>
 
 				<Show when={!!title}>
 					<div className="post-title">{title}</div>

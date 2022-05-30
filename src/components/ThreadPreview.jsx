@@ -2,7 +2,7 @@ import { Link } from "solid-app-router";
 import { For } from "solid-js";
 import Post from "./Post";
 
-function ThreadPreview({ id, title, text, tail }) {
+function ThreadPreview({ id, title, text, tail, ...rest }) {
 	return (
 		<>
 			<Post
@@ -14,6 +14,7 @@ function ThreadPreview({ id, title, text, tail }) {
 				}
 				text={text}
 				isPreview={false}
+				{...rest}
 				isOp
 			/>
 
