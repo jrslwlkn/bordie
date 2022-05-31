@@ -167,7 +167,7 @@ hr {
   margin: 10px 0 0;
 }
 
-.post-picsrelated {
+.post-picsrelated, .post-replies {
   display: flex;
   align-items: flex-start;
   gap: 20px;
@@ -185,6 +185,10 @@ hr {
 .post-text {
   text-align: justify;
   margin: 10px 0 0;
+}
+
+.post-replies {
+  margin-top: 10px;
 }
 
 .loading-text {

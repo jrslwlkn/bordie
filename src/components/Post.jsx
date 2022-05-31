@@ -56,6 +56,19 @@ function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, is
 				</Show>
 
 				<article className="post-text">{text}</article>
+
+				<Show when={replies?.length}>
+					<div className="post-replies post-picsrelated">
+						<For each={replies}>
+							{(replyId) => (
+								<a href={"#" + replyId}>
+									{">>"}
+									{replyId}
+								</a>
+							)}
+						</For>
+					</div>
+				</Show>
 			</div>
 
 			<Form
