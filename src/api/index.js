@@ -60,7 +60,7 @@ export const getBoard = async (boardId, page = 1) => {
 					{
 						id: 233,
 						datetimecreated: new Date(),
-						text: "hello 2",
+						text: "hello 2\n>>213 hello -> >>9",
 						picsrelated: [
 							{
 								src: "https://www.purina.co.uk/sites/default/files/2020-12/Understanding%20Your%20Cat%27s%20Body%20LanguageHERO.jpg",

@@ -1,9 +1,11 @@
 import { useNavigate } from "solid-app-router";
 import { For } from "solid-js";
+import useParsedText from "../hooks/use-parsed-text";
 import useReply from "../hooks/use-reply";
 
 function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, isPreview }) {
 	const [Button, Form, isOpen] = useReply({ text: "" });
+	const Text = useParsedText(text);
 	const navigate = useNavigate();
 
 	return (
@@ -55,7 +57,7 @@ function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, is
 					<div className="post-title">{title}</div>
 				</Show>
 
-				<article className="post-text">{text}</article>
+				<article className="post-text">{Text}</article>
 
 				<Show when={replies?.length}>
 					<div className="post-replies post-picsrelated">
