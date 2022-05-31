@@ -1,9 +1,9 @@
 import { Link } from "solid-app-router";
 import { createResource, For } from "solid-js";
-import { getBoard } from "../api";
+import { getBoards } from "../api";
 
 function Home(props) {
-	const [boards] = createResource(getBoard);
+	const [boards] = createResource(getBoards);
 
 	return (
 		<div className="home-container">
