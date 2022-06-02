@@ -12,7 +12,7 @@ function useParsedText(original = "") {
 	let prevBound = 0;
 	const parts = matches.reduce((arr, cur, i) => {
 		const slice = original.substring(prevBound, cur.index);
-		arr.push(slice);
+		arr.push(<span style="white-space: pre-wrap;">{slice}</span>);
 		const [link] = cur;
 		const id = Number.parseInt(cur[0].substring(2));
 		prevBound = cur.index + link.length;
@@ -20,7 +20,7 @@ function useParsedText(original = "") {
 
 		if (i === matches.length - 1) {
 			const slice2 = original.substring(prevBound);
-			arr.push(slice2);
+			arr.push(<span style="white-space: pre-wrap;">{slice2}</span>);
 		}
 
 		return arr;
