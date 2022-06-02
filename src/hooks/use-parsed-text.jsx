@@ -8,14 +8,21 @@ function useParsedText(original = "") {
 	if (!matches.length) {
 		return original;
 	}
+
 	let prevBound = 0;
-	const parts = matches.reduce((arr, cur) => {
+	const parts = matches.reduce((arr, cur, i) => {
 		const slice = original.substring(prevBound, cur.index);
 		arr.push(slice);
 		const [link] = cur;
 		const id = Number.parseInt(cur[0].substring(2));
 		prevBound = cur.index + link.length;
 		arr.push(<a href={"#" + id}>{useDynamicPost(id)}</a>);
+
+		if (i === matches.length - 1) {
+			const slice2 = original.substring(prevBound);
+			arr.push(slice2);
+		}
+
 		return arr;
 	}, []);
 

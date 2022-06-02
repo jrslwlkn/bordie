@@ -39,7 +39,7 @@ function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, is
 				<div className="post-picsrelated">
 					<For each={picsrelated || []}>
 						{(pic) => (
-							<div style={{ overflow: "auto" }}>
+							<div className="post-pic-container" style={{ overflow: "auto" }}>
 								<a href={pic.src} target="_blank">
 									{pic.filename}.{pic.type}
 								</a>

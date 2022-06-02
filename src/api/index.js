@@ -28,7 +28,7 @@ export const getBoard = async (boardId, page = 1) => {
 				id: 3423,
 				datetimecreated: new Date(),
 				title: boardId + " - Lorem Ipsum",
-				text: "some text here",
+				text: ">>3 some text here",
 				picsrelated: [
 					{
 						src: "https://www.purina.co.uk/sites/default/files/2020-12/Understanding%20Your%20Cat%27s%20Body%20LanguageHERO.jpg",

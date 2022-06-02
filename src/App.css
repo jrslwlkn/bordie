@@ -136,6 +136,10 @@ hr {
   border: 1px dotted grey;
 }
 
+.dynamic-post-container .post-container {
+  margin: 0;
+}
+
 .thread-container {
   margin: 20px 0;
 }
@@ -177,7 +181,7 @@ hr {
   max-width: 9em;
 }
 
-.post-picsrelated a, .post-picsrelated span {
+.post-picsrelated .post-pic-container a, .post-picsrelated .post-pic-container span {
   font-size: small;
 }
 
@@ -203,6 +207,7 @@ hr {
   z-index: 420;
   background-color: whitesmoke;
   overflow: visible !important;
+  color: initial;
 }
 
 .loading-text {
