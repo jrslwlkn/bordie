@@ -61,7 +61,7 @@ function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, is
 				<article className="post-text">{Text}</article>
 
 				<Show when={replies?.length}>
-					<div className="post-replies post-picsrelated">
+					<div className="post-replies">
 						<For each={replies}>
 							{(replyId) => <a href={"#" + replyId}>{useDynamicPost(replyId)}</a>}
 						</For>

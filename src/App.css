@@ -181,8 +181,12 @@ hr {
   max-width: 9em;
 }
 
-.post-picsrelated .post-pic-container a, .post-picsrelated .post-pic-container span {
+.post-pic-container  a, .post-pic-container span, .post-replies  .dynamic-post-link {
   font-size: small;
+}
+
+.dynamic-post .post-text .dynamic-post-link {
+  font-size: initial;
 }
 
 .post-text {
@@ -196,10 +200,6 @@ hr {
 
 .dynamic-post-container {
   position: relative;
-}
-
-.dynamic-post-link:hover + .dynamic-post {
-  display: block;
 }
 
 .dynamic-post {
