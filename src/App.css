@@ -200,8 +200,6 @@ hr {
 
 .dynamic-post {
   position: absolute;
-  bottom: 20px;
-  right: 0;
   z-index: 420;
   background-color: whitesmoke;
   overflow: visible !important;

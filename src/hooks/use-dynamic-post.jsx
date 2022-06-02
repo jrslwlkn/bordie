@@ -20,38 +20,59 @@ function useDynamicPost(id) {
 	const [_post] = createResource(id, getPost);
 	const post = createMemo(() => _post());
 	const [shown, _shown] = createSignal(false);
+	const [directionStyle, _style] = createSignal({});
+	const auxId = +new Date();
 
 	const open = () => {
 		window._lastIn[id] = new Date();
 
-		console.log("open", id);
+		const _el = document.getElementById(auxId);
+		const { right, top } = _el.getBoundingClientRect();
+		const width = window.innerWidth / 2;
+		const height = window.innerHeight / 2;
+		const style = {};
+		if (right >= width && top <= height) {
+			style.top = "20px";
+			style.right = 0;
+		} else if (right >= width && top >= height) {
+			style.bottom = "20px";
+			style.right = 0;
+		} else if (right <= width && top >= height) {
+			style.bottom = "20px";
+			style.left = 0;
+		} else if (right <= width && top <= height) {
+			style.top = "20px";
+			style.left = 0;
+		}
+		_style(style);
+
 		_shown(true);
 	};
 
 	const close = () => {
-		console.log("close init", id);
-
 		setTimeout(() => {
-			if (DURATION_MS > new Date() - window._lastIn[id]) return;
-
-			console.log("close run", id);
-			_shown(false);
+			if (DURATION_MS <= new Date() - window._lastIn[id]) {
+				_shown(false);
+			}
 		}, DURATION_MS);
 	};
 
 	return (
 		<span className="dynamic-post-container" onMouseEnter={open} onMouseLeave={close}>
-			<span className="dynamic-post-link">
+			<span id={auxId} className="dynamic-post-link">
 				{">>"}
 				{id}
 			</span>
-			<span className="dynamic-post">
-				<Show when={shown()}>
-					<div onMouseEnter={open} onMouseLeave={close}>
-						<Post {...post()} />
-					</div>
-				</Show>
-			</span>
+			<Show when={shown()}>
+				<div
+					className="dynamic-post"
+					onMouseEnter={open}
+					onMouseLeave={close}
+					style={directionStyle()}
+				>
+					<Post {...post()} />
+				</div>
+			</Show>
 		</span>
 	);
 }
