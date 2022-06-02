@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import useDynamicPost from "./use-dynamic-post";
 
 const REPLY_PATTERN = /\>\>[0-9]+/g;
 
@@ -12,8 +13,9 @@ function useParsedText(original = "") {
 		const slice = original.substring(prevBound, cur.index);
 		arr.push(slice);
 		const [link] = cur;
+		const id = Number.parseInt(cur[0].substring(2));
 		prevBound = cur.index + link.length;
-		arr.push(<a href={"#" + cur[0].substring(2)}>{link}</a>);
+		arr.push(<a href={"#" + id}>{useDynamicPost(id)}</a>);
 		return arr;
 	}, []);
 

@@ -1,5 +1,6 @@
 import { useNavigate } from "solid-app-router";
 import { For } from "solid-js";
+import useDynamicPost from "../hooks/use-dynamic-post";
 import useParsedText from "../hooks/use-parsed-text";
 import useReply from "../hooks/use-reply";
 
@@ -62,12 +63,7 @@ function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, is
 				<Show when={replies?.length}>
 					<div className="post-replies post-picsrelated">
 						<For each={replies}>
-							{(replyId) => (
-								<a href={"#" + replyId}>
-									{">>"}
-									{replyId}
-								</a>
-							)}
+							{(replyId) => <a href={"#" + replyId}>{useDynamicPost(replyId)}</a>}
 						</For>
 					</div>
 				</Show>

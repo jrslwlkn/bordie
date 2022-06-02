@@ -147,3 +147,33 @@ export const getThread = async (threadId) => {
 		]);
 	});
 };
+
+export const getPost = async (id) => {
+	return new Promise((res) => {
+		res({
+			id: 233,
+			datetimecreated: new Date(),
+			text: "hello 2\n>>213 hello -> >>9",
+			picsrelated: [
+				{
+					src: "https://www.purina.co.uk/sites/default/files/2020-12/Understanding%20Your%20Cat%27s%20Body%20LanguageHERO.jpg",
+					filename: "cat_in_grass",
+					bytesize: 3423423,
+					type: "jpg",
+					width: 342,
+					height: 399,
+				},
+				{
+					src: "https://static.independent.co.uk/2021/06/16/08/newFile-4.jpg",
+					filename: "cat",
+					type: "jpg",
+					bytesize: 3423423,
+					type: "jpg",
+					width: 342,
+					height: 399,
+				},
+			],
+			replies: [1, 3, 3433423],
+		});
+	});
+};

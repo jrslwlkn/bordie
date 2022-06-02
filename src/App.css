@@ -130,7 +130,6 @@ hr {
 
 .post-container {
   position: relative;
-  overflow: auto;
   margin: 20px 0;
   padding: 20px;
   min-width: 50%;
@@ -189,6 +188,23 @@ hr {
 
 .post-replies {
   margin-top: 10px;
+}
+
+.dynamic-post-container {
+  position: relative;
+}
+
+.dynamic-post-link:hover + .dynamic-post {
+  display: block;
+}
+
+.dynamic-post {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  z-index: 420;
+  background-color: whitesmoke;
+  overflow: visible !important;
 }
 
 .loading-text {
