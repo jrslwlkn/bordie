@@ -21,3 +21,5 @@
 go.work
 
 rethinkdb_data/
+
+.env
