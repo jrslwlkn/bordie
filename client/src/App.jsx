@@ -8,14 +8,12 @@ const Board = lazy(() => import("./components/Board"));
 const Thread = lazy(() => import("./components/Thread"));
 const Menu = lazy(() => import("./components/Menu"));
 
-const boards = [{ id: "b" }, { id: "a" }];
-
 function App() {
 	return (
 		<MetaProvider>
 			<Title>Bordie, open source imageboard</Title>
 			<div className="main-container">
-				<Menu items={boards} />
+				<Menu />
 				<Routes>
 					<Route path="/" element={<Home />} />u
 					<Route

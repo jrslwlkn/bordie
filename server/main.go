@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -36,12 +37,14 @@ func main() {
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
+	defer session.Close()
 
 	router.GET("/boards", getBoards)
 	router.GET("/board/:boardId/:page", getBoard)
 	router.GET("/thread/:threadId", getThread)
 	router.GET("/thread/:threadId/post/:postId", getPost)
-	router.POST("/post", postPost)
+	router.POST("/board/:boardId", postOp)
+	router.POST("/thread/:threadId", postReply)
 
 	router.Run("localhost:8088")
 }
@@ -92,21 +95,39 @@ func getBoard(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, data)
 }
 
-func getThread(c *gin.Context) {
+func getThread(c *gin.Context) { // TODO
 
 }
 
-func getPost(c *gin.Context) {
+func getPost(c *gin.Context) { // TODO
 
 }
 
-func postPost(c *gin.Context) {
+type opPayload struct {
+	Title string `json:"title"`
+	Text  string `json:"text"`
+	// Images []string `json:"images"`
+}
+
+func postOp(c *gin.Context) {
 	data, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		fmt.Println(err)
 	}
-	jsonString := string(data[:])
-	// TODO
-	fmt.Println("data: ...")
-	fmt.Println(jsonString)
+	var payload opPayload
+	json.Unmarshal(data, &payload)
+
+	// FIXME: add validation
+
+	res, err2 := r.Table("threads").Insert(payload).Run(session)
+	if err2 != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("response: ...")
+	fmt.Println(res)
+}
+
+func postReply(c *gin.Context) { // TODO
+
 }

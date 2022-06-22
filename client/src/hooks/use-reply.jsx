@@ -11,16 +11,17 @@ function useReply(initialForm) {
 		</button>
 	);
 
-	const Form = ({ isValid, className }) => (
+	const Form = ({ isValid, className, hasTitle, onSubmit }) => (
 		<>
 			<Show when={getOpen()}>
 				<PostForm
 					getForm={getForm}
 					setForm={(diff = {}) => setForm({ ...getForm(), ...diff })}
 					isValid={isValid}
-					hasTitle={initialForm?.title !== undefined}
+					hasTitle={hasTitle}
 					className={className}
-					close={() => setOpen(false)}
+					closeForm={() => setOpen(false)}
+					onSubmit={onSubmit}
 				/>
 			</Show>
 		</>

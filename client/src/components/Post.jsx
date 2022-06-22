@@ -1,11 +1,22 @@
 import { useNavigate } from "solid-app-router";
 import { For } from "solid-js";
+import { postReply } from "../api";
 import useDynamicPost from "../hooks/use-dynamic-post";
 import useParsedText from "../hooks/use-parsed-text";
 import useReply from "../hooks/use-reply";
 
-function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, isPreview }) {
-	const [Button, Form, isOpen] = useReply({ text: "" });
+function Post({
+	id,
+	threadId,
+	title,
+	text,
+	isOp,
+	datetimecreated,
+	picsrelated,
+	replies,
+	isPreview,
+}) {
+	const [Button, ReplyForm, isOpen] = useReply({ text: "" });
 	const Text = useParsedText(text);
 	const navigate = useNavigate();
 
@@ -69,10 +80,11 @@ function Post({ id, title, text, isOp, datetimecreated, picsrelated, replies, is
 				</Show>
 			</div>
 
-			<Form
+			<ReplyForm
 				isValid={({ text }) => !!text.length}
 				hasTitle={false}
 				className={isPreview ? " post-preview" : ""}
+				onSubmit={async (form) => postReply(threadId, form)}
 			/>
 		</>
 	);

@@ -1,10 +1,12 @@
 import { Link } from "solid-app-router";
-import { For } from "solid-js";
+import { createResource, For } from "solid-js";
+import { getBoards } from "../api";
 
-function Menu({ items }) {
+function Menu() {
+	const [items] = createResource(getBoards);
 	return (
 		<div className="main-menu-container">
-			<For each={items}>
+			<For each={items()}>
 				{(item) => (
 					<Link class="nav-link" href={"/" + item.id}>
 						/{item.id}

@@ -1,14 +1,13 @@
-function PostForm({ getForm, setForm, isValid, hasTitle, className, close }) {
+function PostForm({ onSubmit, getForm, setForm, isValid, hasTitle, className, closeForm }) {
 	const { title, text } = getForm();
 
 	const handleSubmit = async (e) => {
-		// TODO
 		e.preventDefault();
-		console.log({ e });
+		await onSubmit(getForm());
 	};
 
 	return (
-		<form className={"new-post op-post " + (className || "")} onSubmit={handleSubmit}>
+		<form className={"new-post op-post " + (className || "")} onSubmit={(e) => handleSubmit(e)}>
 			<Show when={hasTitle}>
 				<input
 					className="new-post-title"
@@ -35,7 +34,7 @@ function PostForm({ getForm, setForm, isValid, hasTitle, className, close }) {
 				>
 					Submit
 				</button>
-				<button type="button" className="btn-small" onClick={close}>
+				<button type="button" className="btn-small" onClick={closeForm}>
 					<strong>x</strong>
 				</button>
 			</div>
